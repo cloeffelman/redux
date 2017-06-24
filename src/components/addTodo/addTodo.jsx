@@ -1,38 +1,32 @@
-import React, {Component} from 'react'
+import React from 'react'
+import {connect} from 'react-redux'
 
-class AddTodo extends Component {
-  constructor(props){
-    super(props)
-    this.addTodo = this.addTodo.bind(this)
-    this.onKeyPress = this.onKeyPress.bind(this)
-  }
-  addTodo(){
-    if(this.refs.input.value === '') return null
-    this.props.store.dispatch({
-      type: 'ADD_TODO',
-      text: this.refs.input.value,
-      id: Math.random(0, 1000000)
-    })
-    this.refs.input.value = ''
-  }
-  onKeyPress(e){
-    if(e.key === 'Enter') this.refs.button.click()
-  }
-  render(){
-    let input
-    return(
-      <div className='add-todo'>
-        <input ref='input' className='add-todo-input' onKeyPress={this.onKeyPress}/>
-        <button
-          ref='button'
-          className='add-todo-button'
-          onClick={this.addTodo}
-        >
-          Add Todo
-        </button>
-      </div>
-    )
-  }
+let AddTodo = ({dispatch}) => {
+  let input, button
+  return(
+    <div className='add-todo'>
+      <input
+        ref={node => {input = node}}
+        onKeyPress={e => e.key === 'Enter' ? button.click() : null}
+        className='add-todo-input'/>
+      <button
+        ref={node => {button = node}}
+        className='add-todo-button'
+        onClick={() => {
+          dispatch({
+            type: 'ADD_TODO',
+            id: Math.random(0, 100000000),
+            text: input.value
+          })
+          input.value = ''
+        }}
+      >
+        Add Todo
+      </button>
+    </div>
+  )
 }
+
+AddTodo = connect()(AddTodo)
 
 export {AddTodo}
