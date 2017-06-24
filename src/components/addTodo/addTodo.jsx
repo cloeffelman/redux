@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import {addTodo} from '../../actions/todoActions'
+
 let AddTodo = ({dispatch}) => {
   let input, button
   return(
@@ -13,11 +15,7 @@ let AddTodo = ({dispatch}) => {
         ref={node => {button = node}}
         className='add-todo-button'
         onClick={() => {
-          dispatch({
-            type: 'ADD_TODO',
-            id: Math.random(0, 100000000),
-            text: input.value
-          })
+          dispatch(addTodo(input.value))
           input.value = ''
         }}
       >
