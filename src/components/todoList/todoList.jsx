@@ -12,7 +12,7 @@ const TodoList = ({todos, onTodoClick, visibilityFilter}) => {
       text={todo.text} />
   )
   return(
-    <ul className='todos'>{todos}</ul>
+    <ul className='todo-list'>{todos}</ul>
   )
 }
 

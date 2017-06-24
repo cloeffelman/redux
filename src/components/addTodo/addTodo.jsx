@@ -10,7 +10,8 @@ let AddTodo = ({dispatch}) => {
       <input
         ref={node => {input = node}}
         onKeyPress={e => e.key === 'Enter' ? button.click() : null}
-        className='add-todo-input'/>
+        className='add-todo-input'
+        placeholder='Enter something to do'/>
       <button
         ref={node => {button = node}}
         className='add-todo-button'

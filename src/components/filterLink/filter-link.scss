@@ -1,0 +1,16 @@
+.filter{
+  color: rgb(204,204,204);
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px 10px;
+  text-align: center;
+  width: 100px;
+
+  &:hover{
+    color: rgb(78, 163, 200);
+  }
+
+  &.active{
+    color: rgb(42, 108, 137);
+  }
+}
